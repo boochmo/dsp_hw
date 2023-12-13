@@ -1,0 +1,5 @@
+outs:
+- md5: a5f03b6c0a647b4c56c314a5289c325c
+  size: 5773854
+  hash: md5
+  path: noise.wav

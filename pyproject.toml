@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "dsp-hw"
+version = "0.1.0"
+description = ""
+authors = ["boochmo <info@nanhekumar.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+soundfile = "^0.12.1"
+torch = "^2.1.1"
+torchmetrics = "^1.2.1"
+pesq = "^0.0.4"
+pre-commit = "^3.6.0"
+dvc = "^3.33.3"
+dvc-gdrive = "^2.20.0"
+
+[tool.isort]
+src_paths = ["code"]
+profile = "black"
+line_length = 80
+lines_after_imports = 2
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
