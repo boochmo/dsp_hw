@@ -12,20 +12,26 @@ def adjust_length(signal, noise):
 
 
 def mixer(original, noise, snr_db):
+    # получаем множитель, на который будем делить для заданного SNR
     factor = 10 ** (snr_db / 20)
 
+    # обрезаем лишнее
     noise = adjust_length(original, noise)
-
+    # коэффициент для сложения
     coef = original.mean() / (factor * noise.mean())
+    # миксуем
     mix = original + coef * noise
     return mix
 
 
 if __name__ == "__main__":
+    # получение данных
     orig, sr = sf.read("./data/hw_2/gt.wav")
     orig = torch.tensor(orig)
     noise, _ = sf.read("./data/hw_2/noise.wav")
     noise = noise[:, 1]
+
+    # считаем метрики
     PESQ = PerceptualEvaluationSpeechQuality(16000, "wb")
     for snr_db in [-5, 0, 5, 10]:
         mix = mixer(orig, noise, snr_db)
