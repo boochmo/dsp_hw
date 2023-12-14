@@ -56,5 +56,5 @@ if __name__ == "__main__":
 
     # переходим обратно во временную обласит
     enh_noise = irfft(enh_noise_sp)
-    os.system('mkdir output/hw_1')
+    os.system("mkdir output/hw_1")
     write("./output/hw_1/enh_white_noise.wav", sr, enh_noise)
