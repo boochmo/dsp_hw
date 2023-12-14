@@ -1,0 +1,5 @@
+outs:
+- md5: 498dc2705e4a745739117a16caccd9ee
+  size: 1892430
+  hash: md5
+  path: record.wav

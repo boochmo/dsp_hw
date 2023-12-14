@@ -1,0 +1,5 @@
+outs:
+- md5: 9783f88a2c738bcd18c5d8d37f53c3e1
+  size: 3932204
+  hash: md5
+  path: sweeper_rec.wav

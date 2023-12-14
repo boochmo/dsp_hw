@@ -1,0 +1,5 @@
+outs:
+- md5: ab9f9d25057a6fb0fb6de8ed52d90a9f
+  size: 902824
+  hash: md5
+  path: white_noise_rec.wav

@@ -1,0 +1,5 @@
+outs:
+- md5: 499e69edd10c89f34d83d03d3f51720c
+  size: 3843918
+  hash: md5
+  path: sweeper_gt.wav
