@@ -20,6 +20,7 @@ dvc pull
 ```
 python code/hw_1/enhance_noise.py
 ```
+Скрипт берёт на вход оригинальный файл со свипером `data/hw_1/sweeper_gt.wav`, свипер, записанный с колонок, `data/hw_1/sweeper_rec.wav` и файл с оригинальным белым шумом `data/hw_1/white_noise_gt.wav`.
 
 В результате мы получим файл `output/hw_1/enh_white_noise.wav` - аудио с белым шумом, где мы откорректировали спектр в соответствии с АЧХ колонок.
 
