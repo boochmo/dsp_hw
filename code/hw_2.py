@@ -1,8 +1,10 @@
 import soundfile as sf
+import numpy as np
 import torch
 from torchmetrics.audio import (
     ScaleInvariantSignalDistortionRatio,
     SignalDistortionRatio,
+    SignalNoiseRatio,
 )
 from torchmetrics.audio.pesq import PerceptualEvaluationSpeechQuality
 
@@ -13,12 +15,12 @@ def adjust_length(signal, noise):
 
 def mixer(original, noise, snr_db):
     # получаем множитель, на который будем делить для заданного SNR
-    factor = 10 ** (snr_db / 20)
+    factor = 10 ** (snr_db / 10)
 
     # обрезаем лишнее
     noise = adjust_length(original, noise)
     # коэффициент для сложения
-    coef = original.mean() / (factor * noise.mean())
+    coef = np.sqrt((original**2).mean() / (factor * (noise**2).mean()))
     # миксуем
     mix = original + coef * noise
     return mix
@@ -36,6 +38,10 @@ if __name__ == "__main__":
     for snr_db in [-5, 0, 5, 10]:
         mix = mixer(orig, noise, snr_db)
         print(f"-=-=-=-=-=-=-=- SNRdB: {snr_db} -=-=-=-=-=-=-=-")
+        print(
+            "SNR: ",
+            SignalNoiseRatio()(mix, orig).detach().numpy(),
+        )
         print(
             "SDR: ",
             SignalDistortionRatio()(mix, orig).detach().numpy(),

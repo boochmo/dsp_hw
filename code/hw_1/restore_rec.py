@@ -23,7 +23,6 @@ if __name__ == "__main__":
 
     # считываем улучшенный шум из предыдущего скрипта
     enh_noise, _ = sf.read("./output/hw_1/enh_white_noise.wav")
-    enh_noise = enh_noise
 
     # делаем деконволюцию, получаем импульсный отклик
     h = deconvolve(enh_noise, rec_noise)
