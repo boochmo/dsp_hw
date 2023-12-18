@@ -24,7 +24,7 @@ if __name__ == "__main__":
     STEP = len(rec_sp) // 32
     orig_bins = [orig_sp[(i - 1) * STEP : i * STEP].mean() for i in range(1, 32)]
     orig_bins.append(orig_sp[-STEP:].mean())
-    orig_bins = np.abs(orig_bins)
+    orig_bins = np.abs(orig_bins)     ## лишнее, уже делали же абс на спектре
 
     # бъём на бины записанное аудио
     rec_bins = [rec_sp[(i - 1) * STEP : i * STEP].mean() for i in range(1, 32)]
@@ -39,6 +39,11 @@ if __name__ == "__main__":
     for i, gain in enumerate(gains):
         if gain < 0.001:
             gains[i] = 1
+
+    ## формулировка не очень совпадает с кодом, кажется что просто выкидываем частоты,
+    ## хотя по факту ты просто гейны корректируешь в адекватные значения
+    ## (что в целом тоже не очень честно, так как мы же стараемся колонку скорректировать,
+    ## раз она не воспроизводит высокие - надо их корректировать, чтобы хотя бы попыталась)
 
     # считываем шум
     noise_orig, _ = sf.read("./data/hw_1/white_noise_gt.wav")
@@ -58,3 +63,6 @@ if __name__ == "__main__":
     enh_noise = irfft(enh_noise_sp)
     os.system("mkdir output/hw_1")
     write("./output/hw_1/enh_white_noise.wav", sr, enh_noise)
+
+
+    ## хотелось бы какие-нибудь визуализации графиками, типа как выглядел сигнал до, как после, как Фурье выглядит и прочее

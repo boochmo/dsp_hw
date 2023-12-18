@@ -35,6 +35,9 @@ if __name__ == "__main__":
 
     # считаем метрики
     PESQ = PerceptualEvaluationSpeechQuality(16000, "wb")
+    ## pesq используешь, а файлы не ресемплишь в 16кГц, вот она странные значения и выдает, она же только по 16 макс работает
+    ## (как и DNSMOS, кстати)
+
     for snr_db in [-5, 0, 5, 10]:
         mix = mixer(orig, noise, snr_db)
         print(f"-=-=-=-=-=-=-=- SNRdB: {snr_db} -=-=-=-=-=-=-=-")

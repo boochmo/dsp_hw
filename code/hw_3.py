@@ -22,6 +22,9 @@ if __name__ == "__main__":
         enh = torch.tensor(enh)
 
         PESQ = PerceptualEvaluationSpeechQuality(16000, "wb")
+
+        ## аналогичная 2 заданию проблема - для пески и днсмоса надо ресемплить в 16кГц
+
         print(f"-=-=-=-=-=-=- file: {file}_DeepFilterNet3.wav -=-=-=-=-=-=-")
         print(
             "SNR: ",
